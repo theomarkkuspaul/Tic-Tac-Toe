@@ -17,5 +17,17 @@ Board.prototype.cellCoordinates = function(rowNum, cellIndexNum) {
 };
 
 Board.prototype.strikeCell = function(cellCoors, type) {
-  this.board[cellCoors[0]][cellCoors[1]] = type
+  if(this.checkCellAvailability(cellCoors)){
+    alert('Already taken');
+  } else {
+    this.board[cellCoors[0]][cellCoors[1]] = type;
+  };
+};
+
+Board.prototype.checkCellAvailability = function(cellCoors) {
+  if(this.board[cellCoors[0]][cellCoors[1]] == 'X' || this.board[cellCoors[0]][cellCoors[1]] == 'O'){
+    return true;
+  } else {
+    false;
+  };
 };

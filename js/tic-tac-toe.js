@@ -11,7 +11,7 @@ $(document).ready(function(event){
     rowNum = $target.parent().parent().parent().attr('id')[3];
     coors = board.cellCoordinates(rowNum, board.findCellIndexNum(rowNum, cellNum));
     board.strikeCell(coors, 'X');
-
+    $target.css('background-color', 'red');
   });
 
 });
