@@ -9,7 +9,7 @@ $(document).ready(function(event){
     cellNum = $target.attr('id')[4];
     rowNum = $target.parent().parent().parent().attr('id')[3];
     coors = board.cellCoordinates(rowNum, board.findCellIndexNum(rowNum, cellNum));
-    board.strikeCell(coors, new Cross);
+    board.strikeCell(coors, new Nought);
     $target.css('background-color', 'red');
     board.performChecks(rowNum, cellNum, coors);
   });
