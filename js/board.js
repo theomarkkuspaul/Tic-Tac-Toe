@@ -1,11 +1,10 @@
 
 var Board = function(){
   this.board = {
-        1:[0,0,0],
-        2:[0,0,0],
-        3:[0,0,0]},
-  this.piece = 'X',
-  this.completedRow = ["X","X","X"]
+        1:[null,null,null],
+        2:[null,null,null],
+        3:[null,null,null]},
+  this.completedCrossRow = ['X','X','X']
 }
 
 //rotates array left
@@ -53,7 +52,7 @@ Board.prototype.strikeCell = function(cellCoors, piece) {
   if(this.checkCellAvailability(cellCoors)){
     alert('Already taken');
   } else {
-    this.board[cellCoors[0]][cellCoors[1]] = piece;
+    this.board[cellCoors[0]][cellCoors[1]] = piece.symbol;
   };
 };
 
@@ -66,14 +65,15 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors) {
-  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal(rowNum)){
+  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal()){
     console.log('we have a winner');
   };
 };
 
 Board.prototype.checkHorizontal = function(rowNum){
 // compare row 'n' at certain point in time to see if it matches the completed board
-  if(this.board[rowNum].equals(this.completedRow)){
+  // debugger;
+  if(this.board[rowNum].equals(this.completedCrossRow)){
     return true;
   };
   return false;
@@ -81,23 +81,30 @@ Board.prototype.checkHorizontal = function(rowNum){
 
 Board.prototype.column = function(coors) {
   var column = []
-  for(var i = 0; i < this.completedRow.length; i++){
+  for(var i = 0; i < this.completedCrossRow.length; i++){
     column.push(this.board[(i + 1)][coors[1]])
   };
   return column
 };
 
 Board.prototype.checkVertical = function(coors) {
-  if(this.column(coors).equals(this.completedRow)){
+  if(this.column(coors).equals(this.completedCrossRow)){
     return true;
   };
   return false;
 };
 
-Board.prototype.checkDiagonal = function(rowNum, coors) {
+
+
+Board.prototype.checkDiagonal = function() {
+  //copy current playing board to test for three in a row
   var copyBoard = {}
-  for(var i = 0; i < this.completedRow.length; i++){
+  for(var i = 0; i < this.completedCrossRow.length; i++){
+    //create a copy of the row that the counter was placed on
     var copyRow = this.board[(i + 1)].slice()
+
+    // rotate the copied row to the first index
+    // debugger;
     if(this.board[(i + 1)].includes('X')){
       while(copyRow.indexOf("X") != 0){
         copyRow.rotate();
@@ -106,7 +113,9 @@ Board.prototype.checkDiagonal = function(rowNum, coors) {
     copyBoard[(i + 1)] = copyRow
   };
 
-  for(var i = 0; i < this.completedRow.length; i++){
+  //* lines 100 - 115 could be placed in a new function for better readability
+
+  for(var i = 0; i < this.completedCrossRow.length; i++){
     if(copyBoard[(i + 1)][0] != 'X'){
       return false;
     };
