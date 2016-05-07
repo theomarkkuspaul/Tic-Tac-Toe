@@ -5,14 +5,14 @@ var Board = function(){
         2:[0,0,0],
         3:[0,0,0]},
   this.piece = 'X',
-  this.completedBoard = {
-    1:["X","X","X"],
-    2:["X","X","X"],
-    3:["X","X","X"]
-  }
+  this.completedRow = ["X","X","X"]
 }
 
-
+//rotates array left
+Array.prototype.rotate = function(){
+  var shifted = this.shift();
+  this.push(shifted)
+}
 
 // Compare two arrays for compatability
 Array.prototype.equals = function(array){
@@ -35,16 +35,12 @@ Array.prototype.equals = function(array){
     };
   };
 
-// everything before this tries to prove that the arrays do not match
+// everything before this point tries to prove that the arrays do not match
   return true;
 }
 
 Board.prototype.findCellIndexNum = function(rowNum, cellNum){
   return cellNum - ((parseInt(rowNum) - 1) * 3) - 1;
-};
-
-Board.prototype.findColumnNum = function(coors){
-  return coors[1] + 1
 };
 
 Board.prototype.cellCoordinates = function(rowNum, cellIndexNum) {
@@ -70,22 +66,37 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors) {
-  this.checkHorizontal(rowNum);
-  debugger;
+  this.checkDiagonal()
+  // if(this.checkHorizontal(rowNum) || this.checkVertical(coors)){
+    // console.log('we have a winner');
+  // };
 };
 
 Board.prototype.checkHorizontal = function(rowNum){
 // compare row 'n' at certain point in time to see if it matches the completed board
-  if(this.board[rowNum].equals(this.completedBoard[rowNum])){
+  if(this.board[rowNum].equals(this.completedRow)){
     return true;
   };
   return false;
 };
 
-Board.prototype.checkVertical = function(coors) {
+Board.prototype.column = function(coors) {
   var column = []
   for(var i = 0; i < this.board[coors[0]].length; i++){
     column.push(this.board[(i + 1)][coors[1]])
   };
   return column
+};
+
+Board.prototype.checkVertical = function(coors) {
+  if(this.column(coors).equals(this.completedRow)){
+    return true;
+  };
+  return false;
+};
+
+Board.prototype.checkDiagonal = function() {
+  debugger;
+  this.board[1].rotate();
+  debugger;
 };
