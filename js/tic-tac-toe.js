@@ -1,17 +1,17 @@
 $(document).ready(function(event){
 
-  board = new Board
+  game = new Game
 
   $('.cell-square').on('click', function(event){
-    // event.preventDefault();
+    // debugger;
     var $target = $(event.target);
     var cellNum, rowNum, coors;
     cellNum = $target.attr('id')[4];
     rowNum = $target.parent().parent().parent().attr('id')[3];
-    coors = board.cellCoordinates(rowNum, board.findCellIndexNum(rowNum, cellNum));
-    board.strikeCell(coors, new Nought);
-    $target.css('background-color', 'red');
-    board.performChecks(rowNum, cellNum, coors);
+    coors = game.board.cellCoordinates(rowNum, game.board.findCellIndexNum(rowNum, cellNum));
+    game.board.strikeCell(coors, new Nought);
+    $target.css('background-color', game.pieces[1].color);
+    game.board.performChecks(rowNum, cellNum, coors);
   });
 
 });

@@ -35,7 +35,7 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors) {
-  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal()){
+  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal('O')){
     console.log('we have a winner');
   };
 };
@@ -46,7 +46,9 @@ Board.prototype.checkHorizontal = function(rowNum){
   if(this.board[rowNum].equals(this.completedCrossRow)){
     return true;
   };
-  if(this.board[rowNum].equals(this.completedNoughtRow))
+  if(this.board[rowNum].equals(this.completedNoughtRow)){
+    return true;
+  }
   return false;
 };
 
@@ -62,32 +64,37 @@ Board.prototype.checkVertical = function(coors) {
   if(this.column(coors).equals(this.completedCrossRow)){
     return true;
   };
+
+  if(this.column(coors).equals(this.completedNoughtRow)){
+    return true;
+  };
   return false;
 };
 
 
 
-Board.prototype.checkDiagonal = function() {
+Board.prototype.checkDiagonal = function(symbol) {
   //copy current playing board to test for three in a row
   var copyBoard = {}
-  for(var i = 0; i < this.completedCrossRow.length; i++){
+  for(var i = 0; i < 3; i++){
     //create a copy of the row that the counter was placed on
     var copyRow = this.board[(i + 1)].slice()
 
     // rotate the copied row to the first index
     // debugger;
-    if(this.board[(i + 1)].includes('X')){
-      while(copyRow.indexOf("X") != 0){
+    if(this.board[(i + 1)].includes(symbol)){
+      while(copyRow.indexOf(symbol) != 0){
         copyRow.rotate();
+        //rotate until index zero equals the symbol
       };
     };
     copyBoard[(i + 1)] = copyRow
   };
 
-  //* lines 100 - 115 could be placed in a new function for better readability
+  //* lines above could be placed in a new function for better readability
 
-  for(var i = 0; i < this.completedCrossRow.length; i++){
-    if(copyBoard[(i + 1)][0] != 'X'){
+  for(var i = 0; i < 3; i++){
+    if(copyBoard[(i + 1)][0] != symbol){
       return false;
     };
   };
