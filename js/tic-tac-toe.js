@@ -11,8 +11,8 @@ $(document).ready(function(event){
     rowNum = $target.parent().parent().parent().attr('id')[3];
     coors = board.cellCoordinates(rowNum, board.findCellIndexNum(rowNum, cellNum));
     board.strikeCell(coors, board.piece);
-    board.performChecks(rowNum, cellNum, coors);
     $target.css('background-color', 'red');
+    board.performChecks(rowNum, cellNum, coors);
   });
 
 });

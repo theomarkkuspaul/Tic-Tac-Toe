@@ -11,7 +11,7 @@ var Board = function(){
 //rotates array left
 Array.prototype.rotate = function(){
   var shifted = this.shift();
-  this.push(shifted)
+  return this.push(shifted)
 }
 
 // Compare two arrays for compatability
@@ -66,10 +66,9 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors) {
-  this.checkDiagonal()
-  // if(this.checkHorizontal(rowNum) || this.checkVertical(coors)){
-    // console.log('we have a winner');
-  // };
+  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal(rowNum)){
+    console.log('we have a winner');
+  };
 };
 
 Board.prototype.checkHorizontal = function(rowNum){
@@ -82,7 +81,7 @@ Board.prototype.checkHorizontal = function(rowNum){
 
 Board.prototype.column = function(coors) {
   var column = []
-  for(var i = 0; i < this.board[coors[0]].length; i++){
+  for(var i = 0; i < this.completedRow.length; i++){
     column.push(this.board[(i + 1)][coors[1]])
   };
   return column
@@ -95,8 +94,22 @@ Board.prototype.checkVertical = function(coors) {
   return false;
 };
 
-Board.prototype.checkDiagonal = function() {
-  debugger;
-  this.board[1].rotate();
-  debugger;
+Board.prototype.checkDiagonal = function(rowNum, coors) {
+  var copyBoard = {}
+  for(var i = 0; i < this.completedRow.length; i++){
+    var copyRow = this.board[(i + 1)].slice()
+    if(this.board[(i + 1)].includes('X')){
+      while(copyRow.indexOf("X") != 0){
+        copyRow.rotate();
+      };
+    };
+    copyBoard[(i + 1)] = copyRow
+  };
+
+  for(var i = 0; i < this.completedRow.length; i++){
+    if(copyBoard[(i + 1)][0] != 'X'){
+      return false;
+    };
+  };
+  return true;
 };
