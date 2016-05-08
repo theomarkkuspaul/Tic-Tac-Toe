@@ -24,4 +24,10 @@
   float: left;
 }
 
+.active {
+  background-color: blue;
+}
 
+.finished {
+
+}

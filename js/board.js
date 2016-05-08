@@ -34,6 +34,7 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
   } else {
     false;
   };
+
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors, symbol) {
@@ -131,4 +132,32 @@ Board.prototype.checkDiagonal = function(symbol) {
     return false;
   };
   return false;
+};
+
+Board.prototype.convertCoorsToCellNum = function(coors){
+  if(coors[0] == 1){
+    if(coors[1] == 0){
+      return 1
+    } else if(coors[1] == 1){
+      return 2
+    } else {
+      return 3
+    };
+  } else if(coors[0] == 2){
+    if(coors[1] == 0){
+      return 4
+    } else if(coors[1] == 1){
+      return 5
+    } else {
+      return 6
+    }
+  } else {
+    if(coors[1] == 0){
+      return 7
+    } else if(coors[1] == 1){
+      return 8
+    } else {
+      return 9
+    };
+  };
 };

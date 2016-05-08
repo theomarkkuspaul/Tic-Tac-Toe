@@ -21,3 +21,7 @@ Computer.prototype.possibleCells = function(board) {
 Computer.prototype.randomPossibleCell = function(possibleCells) {
   return possibleCells.sample()
 };
+
+// Computer.prototype.cellNumByIndex = function(coors){
+//   debugger;
+// }

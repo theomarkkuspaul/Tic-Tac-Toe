@@ -18,6 +18,7 @@ Game.prototype.switchTurn = function() {
 Game.prototype.endGame = function(player){
   this.winner = player
   alert('The winner is ' + this.turn.name)
+  return true
 }
 
 
