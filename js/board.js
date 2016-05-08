@@ -40,6 +40,7 @@ Board.prototype.performChecks = function(rowNum, cellNum, coors, symbol) {
   // debugger;
   if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal(symbol)){
     console.log("Player " + game.turn.symbol + " wins!");
+    return true
   };
 };
 
@@ -122,9 +123,9 @@ Board.prototype.checkDiagonal = function(symbol) {
 //   };
 
   if(this.board[2][1] == symbol){
-    if (this.board[1][0] == symbol && this.board[3][2]){
+    if (this.board[1][0] == symbol && this.board[3][2] == symbol){
       return true;
-    } else if(this.board[3][0] == symbol && this.board[1][2]){
+    } else if(this.board[3][0] == symbol && this.board[1][2] == symbol){
       return true;
     };
     return false;
