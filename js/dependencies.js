@@ -28,3 +28,7 @@ Array.prototype.equals = function(array){
 // everything before this point tries to prove that the arrays do not match
   return true;
 }
+
+Array.prototype.sample = function(){
+  return this[Math.floor(Math.random() * this.length)]
+}

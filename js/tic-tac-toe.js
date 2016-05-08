@@ -25,8 +25,11 @@ $(document).ready(function(event){
       };
       game.switchTurn();
 
-      //computerrrrre
-      game.turn.possibleCells(game.board.board)
+      //computerrrrr logique
+      var possibleCells = game.turn.possibleCells(game.board.board);
+      var randomCellCoors = game.turn.randomPossibleCell(possibleCells);
+      game.board.strikeCell(randomCellCoors, game.turn.piece.symbol)
+      debugger;
     });
   });
 });

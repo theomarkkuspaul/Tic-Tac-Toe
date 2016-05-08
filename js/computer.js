@@ -15,5 +15,9 @@ Computer.prototype.possibleCells = function(board) {
       };
     };
   };
-  debugger;
+  return possibilities;
+};
+
+Computer.prototype.randomPossibleCell = function(possibleCells) {
+  return possibleCells.sample()
 };
