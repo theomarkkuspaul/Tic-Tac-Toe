@@ -76,34 +76,58 @@ Board.prototype.checkVertical = function(coors) {
 
 
 Board.prototype.checkDiagonal = function(symbol) {
-  //copy current playing board to test for three in a row
-  var copyBoard = {}
-  var totalRotates = 0
-  for(var i = 0; i < 3; i++){
-    //create a copy of the row that the counter was placed on
-    var copyRow = this.board[(i + 1)].slice()
-    // rotate the copied row to the first index
-    // debugger;
-    if(this.board[(i + 1)].includes(symbol)){
-      while(copyRow.indexOf(symbol) != 0){
-        copyRow.rotate();
-        //rotate until index zero equals the symbol
-        totalRotates += 1
-      };
+//   //copy current playing board to test for three in a row
+//   var copyBoard = {}
+//   var totalRotates = 0
+//   for(var i = 0; i < 3; i++){
+//     //create a copy of the row that the counter was placed on
+//     var copyRow = this.board[(i + 1)].slice()
+//     // rotate the copied row to the first index
+//     // debugger;
+//     if(this.board[(i + 1)].includes(symbol)){
+//       while(copyRow.indexOf(symbol) != 0){
+//         copyRow.rotate();
+//         //rotate until index zero equals the symbol
+//         totalRotates += 1
+//       };
+//     };
+//     copyBoard[(i + 1)] = copyRow
+//   };
+
+//   //* lines above could be placed in a new function for better readability
+
+
+// // *this logic needs rethinking3
+//   for(var i = 0; i < 3; i++){
+//     if(copyBoard[(i + 1)][0] != symbol){
+//       return false;
+//     };
+//   };
+
+//   if(totalRotates == 1){
+//     if(this.board[1][0] == symbol && this.board[1][2] == symbol){
+//       return true;
+//     } else{
+//       debugger;
+//       return false;
+//     }
+//   }
+
+//   if(totalRotates == 3){
+//     if(this.board[1][0] == symbol && this.board[2][1] == symbol){
+//       return true;
+//     } else{
+//       return false
+//     };
+//   };
+
+  if(this.board[2][1] == symbol){
+    if (this.board[1][0] == symbol && this.board[3][2]){
+      return true;
+    } else if(this.board[3][0] == symbol && this.board[1][2]){
+      return true;
     };
-    copyBoard[(i + 1)] = copyRow
-  };
-
-  //* lines above could be placed in a new function for better readability
-
-  for(var i = 0; i < 3; i++){
-    if(copyBoard[(i + 1)][0] != symbol){
-      return false;
-    };
-  };
-
-  if(totalRotates != 3){
     return false;
-  }
-  return true;
+  };
+  return false;
 };
