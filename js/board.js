@@ -21,8 +21,10 @@ Board.prototype.cellCoordinates = function(rowNum, cellIndexNum) {
 Board.prototype.strikeCell = function(cellCoors, piece) {
   if(this.checkCellAvailability(cellCoors)){
     alert('Already taken');
+    return false;
   } else {
-    this.board[cellCoors[0]][cellCoors[1]] = piece;
+    this.board[cellCoors[0]][cellCoors[1]] = piece
+    return true
   };
 };
 
@@ -34,10 +36,10 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
   };
 };
 
-Board.prototype.performChecks = function(rowNum, cellNum, coors) {
+Board.prototype.performChecks = function(rowNum, cellNum, coors, symbol) {
   // debugger;
-  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal('O')){
-    console.log(game.turn.symbol);
+  if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal(symbol)){
+    console.log("Player " + game.turn.symbol + " wins!");
   };
 };
 
@@ -73,20 +75,20 @@ Board.prototype.checkVertical = function(coors) {
 };
 
 
-
 Board.prototype.checkDiagonal = function(symbol) {
   //copy current playing board to test for three in a row
   var copyBoard = {}
+  var totalRotates = 0
   for(var i = 0; i < 3; i++){
     //create a copy of the row that the counter was placed on
     var copyRow = this.board[(i + 1)].slice()
-
     // rotate the copied row to the first index
     // debugger;
     if(this.board[(i + 1)].includes(symbol)){
       while(copyRow.indexOf(symbol) != 0){
         copyRow.rotate();
         //rotate until index zero equals the symbol
+        totalRotates += 1
       };
     };
     copyBoard[(i + 1)] = copyRow
@@ -99,5 +101,9 @@ Board.prototype.checkDiagonal = function(symbol) {
       return false;
     };
   };
+
+  if(totalRotates != 3){
+    return false;
+  }
   return true;
 };

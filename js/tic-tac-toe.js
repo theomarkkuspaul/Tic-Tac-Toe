@@ -8,16 +8,17 @@ $(document).ready(function(event){
     game = new Game
 
     $('.cell-square').on('click', function(event){
-      // debugger;
       var $target = $(event.target);
       var cellNum, rowNum, coors;
       cellNum = $target.attr('id')[4];
       rowNum = $target.parent().parent().parent().attr('id')[3];
       coors = game.board.cellCoordinates(rowNum, game.board.findCellIndexNum(rowNum, cellNum));
-      game.board.strikeCell(coors, game.turn.symbol);
-      game.board.performChecks(rowNum, cellNum, coors);
-      $target.css('background-color', game.turn.color);
-      game.switchTurn();
+      if(game.board.strikeCell(coors, game.turn.symbol)){
+        game.board.performChecks(rowNum, cellNum, coors, game.turn.symbol);
+        $target.css('background-color', game.turn.color);
+        game.switchTurn();
+      };
+
     });
   });
 });
