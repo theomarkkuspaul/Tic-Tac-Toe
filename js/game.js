@@ -8,7 +8,6 @@ var Game = function(players = [new Computer, new Human]){
 };
 
 Game.prototype.switchTurn = function() {
-  debugger;
   if(this.turn.piece.symbol == 'X'){
     this.turn = this.players[0]
   } else if(this.turn.piece.symbol == 'O'){
