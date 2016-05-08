@@ -6,6 +6,8 @@ $(document).ready(function(event){
     var $target = $(event.target)
     $target.hide();
     game = new Game
+    debugger;
+    // if(game)
 
     $('.cell-square').on('click', function(event){
       var $target = $(event.target);
