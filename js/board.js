@@ -22,7 +22,7 @@ Board.prototype.strikeCell = function(cellCoors, piece) {
   if(this.checkCellAvailability(cellCoors)){
     alert('Already taken');
   } else {
-    this.board[cellCoors[0]][cellCoors[1]] = piece.symbol;
+    this.board[cellCoors[0]][cellCoors[1]] = piece;
   };
 };
 
@@ -35,8 +35,9 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors) {
+  // debugger;
   if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal('O')){
-    console.log('we have a winner');
+    console.log(game.turn.symbol);
   };
 };
 
