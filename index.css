@@ -15,7 +15,6 @@
 
 .cell-container{
   border: 1px solid red;
-  /*padding:auto;*/
 }
 
 .cell-square{
@@ -30,4 +29,22 @@
 
 .finished {
 
+}
+
+.human {
+  background-color: red;
+  transition: background-color 1s;
+}
+
+.computer {
+  background-color: blue;
+  transition: background-color 1s;
+}
+
+
+#start-button{
+  margin: auto;
+  /*margin-top: 20px;*/
+  /*margin-left: 50%;*/
+  display: inline;
 }

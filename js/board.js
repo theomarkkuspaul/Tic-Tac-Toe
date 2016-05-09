@@ -38,7 +38,7 @@ Board.prototype.checkCellAvailability = function(cellCoors) {
 };
 
 Board.prototype.performChecks = function(rowNum, cellNum, coors, symbol) {
-  // debugger;
+
   if(this.checkHorizontal(rowNum) || this.checkVertical(coors) || this.checkDiagonal(symbol)){
     console.log("Player " + game.turn.name + " wins!");
     return true
