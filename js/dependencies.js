@@ -33,13 +33,3 @@ Array.prototype.equals = function(array){
 Array.prototype.sample = function(){
   return this[Math.floor(Math.random() * this.length)]
 }
-
-var sleep = function(sleepTime){
-
-  var now = new Date().getTime();
-  for(var i = 0; i < 1e7; i++) {
-    if((new Date().getTime() - now) > sleepTime){
-      break;
-    }
-  }
-}
