@@ -33,3 +33,13 @@ Array.prototype.equals = function(array){
 Array.prototype.sample = function(){
   return this[Math.floor(Math.random() * this.length)]
 }
+
+Array.prototype.instancesOf = function(instance) {
+  var counter = 0;
+  for(var i = 0; i < this.length; i++){
+    if(this[i] == instance){
+      counter += 1
+    }
+  }
+  return counter
+};

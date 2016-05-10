@@ -36,13 +36,13 @@ $(document).ready(function(event){
         var setTimeoutId = setTimeout(function(){
           //computerrrrr logique
           var possibleCells = game.turn.possibleCells(game.board.board);
-          var randomCellCoors = game.turn.randomPossibleCell(possibleCells);
-          var compRowNum = randomCellCoors[0];
+          var cellCoors = game.turn.evalBoard(possibleCells, game.board.board, game.turn.symbol);
+          var compRowNum = cellCoors[0];
 
-          game.board.strikeCell(randomCellCoors, game.turn.piece.symbol);
-          var computerCell = game.board.convertCoorsToCellNum(randomCellCoors);
+          game.board.strikeCell(cellCoors, game.turn.piece.symbol);
+          var computerCell = game.board.convertCoorsToCellNum(cellCoors);
           $('#cell' + computerCell).addClass("" + game.turn.playerType + "")
-          if(game.board.performChecks(compRowNum, computerCell,  randomCellCoors, game.turn.piece.symbol)) {
+          if(game.board.performChecks(compRowNum, computerCell,  cellCoors, game.turn.piece.symbol)) {
             $('.cell-square').removeClass('computer');
             $('.cell-square').addClass('computer');
             game.endGame(game.turn);

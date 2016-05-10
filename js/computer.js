@@ -23,6 +23,25 @@ Computer.prototype.randomPossibleCell = function(possibleCells) {
 };
 
 
-Computer.prototype.evalBoard = function(board) {
-  debugger;
+Computer.prototype.evalBoard = function(possibleCells, board, symbol) {
+
+  if(this.counterHorizontal(board, symbol)){
+    var counterMove = this.counterHorizontal(board, symbol);
+    return counterMove;
+  } else {
+    return this.randomPossibleCell(possibleCells);
+  };
+};
+
+Computer.prototype.counterHorizontal = function(board) {
+  for(var i = 0; i < board[1].length; i++){
+    if(board[(i + 1)].instancesOf(game.players[1].piece.symbol) == 2){
+      for(var j = 0; j < board[(i + 1)].length; j++){
+        if(board[(i + 1)][j] == null){
+          return [(i + 1), j];
+        }
+      }
+    }
+  }
+  return false;
 };
