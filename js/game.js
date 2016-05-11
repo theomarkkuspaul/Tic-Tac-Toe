@@ -22,5 +22,9 @@ Game.prototype.endGame = function(player){
   return true;
 }
 
+Game.prototype.tieGame = function() {
+  alert('The Game is a tie');
+};
+
 
 // new game instance for each upper level cell

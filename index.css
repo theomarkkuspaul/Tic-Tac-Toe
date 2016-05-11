@@ -27,10 +27,6 @@
   background-color: blue;
 }
 
-.finished {
-
-}
-
 .human {
   background-color: red;
   transition: background-color 1s;
@@ -42,10 +38,12 @@
   transition: background-color 1s;
 }
 
+.tie {
+  background-color: green;
+  transition: background-color 1s;
+}
 
 #start-button{
   margin: auto;
-  /*margin-top: 20px;*/
-  /*margin-left: 50%;*/
   display: inline;
 }

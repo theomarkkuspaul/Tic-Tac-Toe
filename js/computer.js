@@ -23,7 +23,7 @@ Computer.prototype.randomPossibleCell = function(possibleCells) {
 };
 
 
-Computer.prototype.evalBoard = function(possibleCells, board, symbol) {
+Computer.prototype.counterMove = function(possibleCells, board, symbol) {
 
   if(this.counterHorizontal(board)){
     var counterHorMove = this.counterHorizontal(board, symbol);

@@ -36,7 +36,7 @@ $(document).ready(function(event){
         var setTimeoutId = setTimeout(function(){
           //computerrrrr logique
           var possibleCells = game.turn.possibleCells(game.board.board);
-          var cellCoors = game.turn.evalBoard(possibleCells, game.board.board, game.turn.symbol);
+          var cellCoors = game.turn.counterMove(possibleCells, game.board.board, game.turn.symbol);
           var compRowNum = cellCoors[0];
 
           game.board.strikeCell(cellCoors, game.turn.piece.symbol);
@@ -52,6 +52,11 @@ $(document).ready(function(event){
 
           clearTimeout(setTimeoutId);
       }, 1000);
+      } else { //if game is a tie
+        debugger;
+        game.tieGame()
+        $('.cell-square').removeClass('computer human');
+        $('.cell-square').addClass('tie');
       }
     });
   });
