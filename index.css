@@ -1,0 +1,49 @@
+
+#board-container{
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+  margin: auto;
+}
+
+#board {
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.cell-container{
+  border: 1px solid red;
+}
+
+.cell-square{
+  height: 100%;
+  width: 100%;
+  float: left;
+}
+
+.active {
+  background-color: blue;
+}
+
+.human {
+  background-color: red;
+  transition: background-color 1s;
+  z-index: -1;
+}
+
+.computer {
+  background-color: blue;
+  transition: background-color 1s;
+}
+
+.tie {
+  background-color: green;
+  transition: background-color 1s;
+}
+
+#start-button{
+  margin: auto;
+  display: inline;
+}
